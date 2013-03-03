@@ -2,22 +2,23 @@
 <div class ="container">
 
 <div class= "forms ">
-<form name="myform"   method="POST" class ="leftForm">
+<form name="myform"   method="GET" class ="leftForm">
 
-    <select name="mydropdown" >
-      <option>News Source</option>
-      <option value="fox">Fox News</option>
-      <option value="msnbc">MSNBC</option>
-      <option value="cnn">CNN</option>
-      <option value="abc">ABC</option>
-    </select>
+  <%=collection_select("article", "newsSource", @urls, :id, :newsSource, :prompt => "Select Topic")%>
 
 </form>
 
+  <form name="topics"   method="GET" class ="topicForm">
 
-<form name="myform2" method="POST" class = "rightForm">
+   <%=collection_select("article", "topic", Article.all, :id, :topic,
+   :prompt => "Select Topic", :onchange => remote_function(:url => {:action => 'get_urls'},
+   :with => "'id=' + this.value"))%>
 
-    <select name="mydropdown" >
+  </form>
+
+<form name="myform2" method="GET" class = "rightForm">
+
+    <select name="newsRight" >
       <option>News Source</option>
       <option value="fox">Fox News</option>
       <option value="msnbc">MSNBC</option>
@@ -30,8 +31,8 @@
 
 
 <div class="panels">
-  <object type="text/html" data="http://www.msnbc.com" width ="49.5%" height="100%" ></object>
-  <object type="text/html" data="http://www.foxnews.com" width ="49.5%"height="100%" ></object>
+  <object type="text/html" data="msnbc.com" width ="49.5%" height="100%" ></object>
+  <object type="text/html" data="foxnews.com" width ="49.5%"height="100%" ></object>
 </div>
 </div>
 

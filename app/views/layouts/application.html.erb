@@ -6,6 +6,11 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= link_to image_tag("logo.jpg"), main_path %>
+  <%= form_tag("/search", :method => "get") do %>
+      <%= label_tag(:q, "Search for:") %>
+      <%= text_field_tag(:q) %>
+      <%= submit_tag("Search") %>
+  <% end %>
   <%= link_to 'New Article', new_article_path %>
 </head>
 <body>
